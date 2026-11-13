@@ -11,7 +11,7 @@ export type Usuario = {
   password: string
 }
 
-export type NuevoUsuario = {
+type NuevoUsuario = {
   name: string
   email: string
   password: string
@@ -42,7 +42,7 @@ const leerSesion = (): Usuario | null => {
   }
 }
 
-export type ResultadoRegistro = 'creado' | 'duplicado'
+type ResultadoRegistro = 'creado' | 'duplicado'
 
 export const useAuth = () => {
   const [usuario, setUsuario] = useState<Usuario | null>(leerSesion)

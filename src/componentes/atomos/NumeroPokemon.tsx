@@ -6,7 +6,9 @@ type Props = {
 
 const NumeroPokemon = ({ numero }: Props) => {
   return (
-    <div className={estilos.numero}>{`#${String(numero).padStart(3, '0')}`}</div>
+    <div className={`badge ${estilos.numero}`}>
+      {`#${String(numero).padStart(3, '0')}`}
+    </div>
   )
 }
 

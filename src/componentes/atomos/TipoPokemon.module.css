@@ -7,6 +7,10 @@
 
     font-weight: bold;
 
+    line-height: normal;
+
+    border-radius: 0;
+
     text-transform: uppercase;
 
     border: 3px solid #111;
@@ -81,16 +85,4 @@
 
 .dragon {
     background: #6f35fc;
-}
-
-@media (max-width: 600px) {
-    .tipo {
-        font-size: 0.5rem;
-
-        padding: 3px 5px;
-
-        border-width: 2px;
-
-        box-shadow: 2px 2px 0 #111;
-    }
 }

@@ -26,7 +26,10 @@ const FormularioRegistro = ({ onRegistrarse }: Props) => {
   }
 
   return (
-    <form className={estilos.formulario} onSubmit={manejarEnvio}>
+    <form
+      className="d-flex flex-column gap-2"
+      onSubmit={manejarEnvio}
+    >
       <h2 className={estilos.titulo}>Crear cuenta</h2>
 
       <CampoFormulario

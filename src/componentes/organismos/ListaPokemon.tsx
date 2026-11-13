@@ -1,16 +1,13 @@
 import { pokemones } from '../../datos/pokemon'
 import TarjetaPokemon from '../moleculas/TarjetaPokemon'
-import estilos from './ListaPokemon.module.css'
 
 const ListaPokemon = () => {
   return (
-    <section className={estilos.lista}>
+    <section className="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6 g-3 g-md-4">
       {pokemones.map((pokemon, indice) => (
-        <TarjetaPokemon
-          key={pokemon.nombre}
-          pokemon={pokemon}
-          numero={indice + 1}
-        />
+        <div className="col" key={pokemon.nombre}>
+          <TarjetaPokemon pokemon={pokemon} numero={indice + 1} />
+        </div>
       ))}
     </section>
   )

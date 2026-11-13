@@ -40,31 +40,33 @@ const ModalAuth = ({ abierto, titulo, onCerrar, children }: Props) => {
   }
 
   const cerrarDesdeFondo = (evento: MouseEvent<HTMLDivElement>) => {
-    if (evento.target === evento.currentTarget) {
+    if (!contenedor.current?.contains(evento.target as Node)) {
       onCerrar()
     }
   }
 
   return (
-    <div className={estilos.fondo} onClick={cerrarDesdeFondo}>
-      <div
-        ref={contenedor}
-        className={estilos.contenedor}
-        role="dialog"
-        aria-modal="true"
-        aria-label={titulo}
-        tabIndex={-1}
-      >
-        <button
-          type="button"
-          className={estilos.cerrar}
-          onClick={onCerrar}
-          aria-label="Cerrar"
+    <div className={`modal d-block ${estilos.fondo}`} onClick={cerrarDesdeFondo}>
+      <div className={`modal-dialog modal-dialog-centered ${estilos.dialogo}`}>
+        <div
+          ref={contenedor}
+          className={`modal-content p-3 p-md-4 ${estilos.contenedor}`}
+          role="dialog"
+          aria-modal="true"
+          aria-label={titulo}
+          tabIndex={-1}
         >
-          ×
-        </button>
+          <button
+            type="button"
+            className={`btn position-absolute top-0 end-0 m-2 ${estilos.cerrar}`}
+            onClick={onCerrar}
+            aria-label="Cerrar"
+          >
+            ×
+          </button>
 
-        {children}
+          <div className="modal-body p-0">{children}</div>
+        </div>
       </div>
     </div>
   )

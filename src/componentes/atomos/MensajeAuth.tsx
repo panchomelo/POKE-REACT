@@ -11,7 +11,7 @@ const MensajeAuth = ({ texto, exito }: Props) => {
     .join(' ')
 
   return (
-    <p className={clases} role="status">
+    <p className={`pt-3 text-center ${clases}`} role="status">
       {texto}
     </p>
   )

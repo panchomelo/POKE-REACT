@@ -1,16 +1,38 @@
-/* Regla compartida que en el CSS original estaba agrupada con
-   .user-session button y .auth-submit. */
+/* Base compartida por los botones del header, las pestañas y los formularios. */
 
 .boton {
     border: 3px solid #111;
+    border-radius: 0;
+    box-shadow: none;
     cursor: pointer;
     font-family: inherit;
     font-weight: bold;
+    line-height: normal;
+    transition: none;
+}
+
+.boton:focus-visible {
+    box-shadow: none;
+    outline: 3px solid #111;
+    outline-offset: 2px;
 }
 
 /* Botones de acceso del header */
 
 .accion {
+    --bs-btn-bg: #eeeeee;
+    --bs-btn-border-color: #111;
+    --bs-btn-color: #111;
+    --bs-btn-hover-bg: #111;
+    --bs-btn-hover-border-color: #111;
+    --bs-btn-hover-color: white;
+    --bs-btn-active-bg: #111;
+    --bs-btn-active-border-color: #111;
+    --bs-btn-active-color: white;
+    --bs-btn-padding-x: 14px;
+    --bs-btn-padding-y: 8px;
+    --bs-btn-font-size: 0.72rem;
+
     background: #eeeeee;
     color: #111;
     font-size: 0.72rem;
@@ -31,19 +53,52 @@
 /* Botón de sesión del header */
 
 .sesion {
+    --bs-btn-bg: #eeeeee;
+    --bs-btn-border-color: #111;
+    --bs-btn-color: #111;
+    --bs-btn-hover-bg: #111;
+    --bs-btn-hover-border-color: #111;
+    --bs-btn-hover-color: white;
+    --bs-btn-active-bg: #111;
+    --bs-btn-active-border-color: #111;
+    --bs-btn-active-color: white;
+
     background: #eeeeee;
     color: #111;
     padding: 6px 10px;
 }
 
+.sesion:hover,
+.sesion:focus-visible {
+    background: #111;
+    color: white;
+}
+
 /* Pestañas de la tarjeta de autenticación */
 
 .pestana {
+    --bs-btn-bg: #cccccc;
+    --bs-btn-border-color: #111;
+    --bs-btn-color: #111;
+    --bs-btn-hover-bg: #bfbfbf;
+    --bs-btn-hover-border-color: #111;
+    --bs-btn-hover-color: #111;
+    --bs-btn-active-bg: #d92727;
+    --bs-btn-active-border-color: #111;
+    --bs-btn-active-color: white;
+
     background: #cccccc;
+    color: #111;
     padding: 10px 6px;
+    width: 100%;
 }
 
 .pestana.activo {
+    --bs-btn-bg: #d92727;
+    --bs-btn-color: white;
+    --bs-btn-hover-bg: #d92727;
+    --bs-btn-hover-color: white;
+
     background: #d92727;
     color: white;
 }
@@ -51,8 +106,24 @@
 /* Botón de envío de los formularios */
 
 .enviar {
+    --bs-btn-bg: #111;
+    --bs-btn-border-color: #111;
+    --bs-btn-color: white;
+    --bs-btn-hover-bg: #333333;
+    --bs-btn-hover-border-color: #111;
+    --bs-btn-hover-color: white;
+    --bs-btn-active-bg: #111;
+    --bs-btn-active-border-color: #111;
+    --bs-btn-active-color: white;
+
     background: #111;
     color: white;
     margin-top: 14px;
     padding: 11px;
+}
+
+.enviar:hover,
+.enviar:focus-visible {
+    background: #333333;
+    color: white;
 }

@@ -8,7 +8,6 @@ import PiePagina from '../componentes/organismos/PiePagina'
 import SeccionAuth from '../componentes/organismos/SeccionAuth'
 import type { VistaAuth } from '../componentes/moleculas/PestanasAuth'
 import { useAuth } from '../hooks/useAuth'
-import estilos from './PaginaPokedex.module.css'
 
 const PaginaPokedex = () => {
   const { usuario, registrar, iniciarSesion, cerrarSesion } = useAuth()
@@ -84,7 +83,7 @@ const PaginaPokedex = () => {
         onAbrirRegistro={() => abrirAuth('registro')}
       />
 
-      <main className={estilos.principal}>
+      <main className="container-xxl py-4 py-md-5">
         <Introduccion />
         <ListaPokemon />
       </main>

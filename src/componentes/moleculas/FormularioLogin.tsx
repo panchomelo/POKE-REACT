@@ -21,7 +21,10 @@ const FormularioLogin = ({ onIniciarSesion }: Props) => {
   }
 
   return (
-    <form className={estilos.formulario} onSubmit={manejarEnvio}>
+    <form
+      className="d-flex flex-column gap-2"
+      onSubmit={manejarEnvio}
+    >
       <h2 className={estilos.titulo}>Acceso al sistema</h2>
 
       <CampoFormulario

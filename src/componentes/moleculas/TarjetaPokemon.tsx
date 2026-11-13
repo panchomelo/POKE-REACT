@@ -12,10 +12,12 @@ type Props = {
 
 const TarjetaPokemon = ({ pokemon, numero }: Props) => {
   return (
-    <article className={estilos.tarjeta}>
+    <article className={`card h-100 p-2 p-md-3 ${estilos.tarjeta}`}>
       <NumeroPokemon numero={numero} />
 
-      <div className={estilos.marco}>
+      <div
+        className={`card-img-top ratio ratio-4x3 ${estilos.marco}`}
+      >
         <ImagenPokemon
           src={urlSpritePokemon(numero)}
           alt={pokemon.nombre}
@@ -23,9 +25,9 @@ const TarjetaPokemon = ({ pokemon, numero }: Props) => {
         />
       </div>
 
-      <h3 className={estilos.nombre}>{pokemon.nombre}</h3>
+      <h3 className={`card-title ${estilos.nombre}`}>{pokemon.nombre}</h3>
 
-      <div className={estilos.tipos}>
+      <div className="card-text d-flex flex-wrap justify-content-center gap-1">
         {pokemon.tipos.map((tipo) => (
           <TipoPokemon key={tipo.nombre} nombre={tipo.nombre} color={tipo.color} />
         ))}

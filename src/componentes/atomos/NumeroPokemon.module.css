@@ -11,20 +11,11 @@
     padding: 4px 6px;
 
     border: 2px solid #111;
+    border-radius: 0;
 
     font-size: 0.75rem;
-
     font-weight: bold;
+    line-height: normal;
 
     z-index: 3;
-}
-
-@media (max-width: 600px) {
-    .numero {
-        font-size: 0.55rem;
-
-        padding: 2px 3px;
-
-        border-width: 1px;
-    }
 }

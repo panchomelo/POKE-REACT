@@ -1,9 +1,6 @@
 .encabezado {
-    position: relative;
     background: #d92727;
     border-bottom: 12px solid #111;
-    padding: 30px 20px 35px;
-    text-align: center;
     color: white;
 
     box-shadow:
@@ -32,19 +29,10 @@
     bottom: 12px;
 }
 
-.acciones {
-    display: flex;
-    gap: 8px;
-    position: absolute;
-    right: 22px;
-    top: 24px;
-    z-index: 2;
-}
-
 .titulo {
     font-size: clamp(2rem, 6vw, 4.5rem);
     font-weight: 900;
-    letter-spacing: 8px;
+    letter-spacing: clamp(4px, 1.2vw, 8px);
 
     color: #fff;
 
@@ -55,7 +43,7 @@
 .subtitulo {
     margin-top: 15px;
 
-    font-size: 0.85rem;
+    font-size: clamp(0.65rem, 1.6vw, 0.85rem);
     font-weight: bold;
 
     letter-spacing: 2px;
@@ -63,26 +51,4 @@
     color: white;
 
     text-shadow: 2px 2px 0 #8e0000;
-}
-
-@media (max-width: 600px) {
-    .encabezado {
-        padding: 25px 15px 30px;
-    }
-
-    .acciones {
-        justify-content: center;
-        margin-top: 20px;
-        position: static;
-    }
-
-    .titulo {
-        font-size: 2rem;
-        letter-spacing: 4px;
-    }
-
-    .subtitulo {
-        font-size: 0.65rem;
-        line-height: 1.7;
-    }
 }

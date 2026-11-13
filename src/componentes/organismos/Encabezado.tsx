@@ -17,8 +17,27 @@ const Encabezado = ({
   onAbrirLogin,
   onAbrirRegistro,
 }: Props) => {
+  const acciones = (
+    <>
+      <Boton variante="accion" onClick={onAbrirLogin}>
+        Iniciar sesión
+      </Boton>
+      <Boton variante="accion" onClick={onAbrirRegistro}>
+        Registrarse
+      </Boton>
+    </>
+  )
+
   return (
-    <header className={estilos.encabezado}>
+    <header
+      className={`text-center position-relative py-4 px-3 px-md-4 ${estilos.encabezado}`}
+    >
+      {!usuario && (
+        <div className="d-none d-md-flex position-absolute top-0 end-0 gap-2 m-3">
+          {acciones}
+        </div>
+      )}
+
       <PokeballLogo />
 
       <h1 className={estilos.titulo}>POKEDUREX</h1>
@@ -30,13 +49,8 @@ const Encabezado = ({
       {usuario ? (
         <PanelSesion nombre={usuario.name} onCerrarSesion={onCerrarSesion} />
       ) : (
-        <div className={estilos.acciones}>
-          <Boton variante="accion" onClick={onAbrirLogin}>
-            Iniciar sesión
-          </Boton>
-          <Boton variante="accion" onClick={onAbrirRegistro}>
-            Registrarse
-          </Boton>
+        <div className="d-flex d-md-none justify-content-center gap-2 mt-3">
+          {acciones}
         </div>
       )}
     </header>

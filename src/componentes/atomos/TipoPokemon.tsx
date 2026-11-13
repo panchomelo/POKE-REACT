@@ -11,7 +11,7 @@ const TipoPokemon = ({ nombre, color }: Props) => {
     .filter(Boolean)
     .join(' ')
 
-  return <span className={clases}>{nombre}</span>
+  return <span className={`badge ${clases}`}>{nombre}</span>
 }
 
 export default TipoPokemon

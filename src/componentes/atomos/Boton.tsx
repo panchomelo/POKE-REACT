@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import estilos from './Boton.module.css'
 
-export type VarianteBoton = 'accion' | 'pestana' | 'enviar' | 'sesion'
+type VarianteBoton = 'accion' | 'pestana' | 'enviar' | 'sesion'
 
 type Props = {
   children: ReactNode
@@ -11,6 +11,13 @@ type Props = {
   onClick?: () => void
 }
 
+const clasesBootstrap: Record<VarianteBoton, string> = {
+  accion: 'btn btn-light',
+  pestana: 'btn btn-outline-dark',
+  enviar: 'btn btn-dark',
+  sesion: 'btn btn-light',
+}
+
 const Boton = ({
   children,
   variante,
@@ -18,7 +25,7 @@ const Boton = ({
   activo = false,
   onClick,
 }: Props) => {
-  const clases = [estilos.boton, estilos[variante]]
+  const clases = [clasesBootstrap[variante], estilos.boton, estilos[variante]]
 
   if (activo) {
     clases.push(estilos.activo)

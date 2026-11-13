@@ -10,7 +10,7 @@ Es un proyecto académico: no hay backend ni pretensiones de producción. La ide
 - Estilo visual retro: tipografía monoespaciada, sombras duras y efecto CRT con CSS puro.
 - **Login y registro opcionales** desde el header. La Pokédex se ve exactamente igual con sesión o sin ella.
 - Sesión persistida en `localStorage`, así que el nombre se mantiene al recargar.
-- Diseño responsive para móvil y escritorio.
+- **Diseño responsive con Bootstrap 5**: grid, utilidades y componentes adaptan columnas, espaciados y alineación en móvil, tablet y escritorio.
 
 ## Cómo ejecutarlo
 
@@ -36,7 +36,8 @@ La app queda disponible en `http://localhost:5173`.
 - **TypeScript** en modo estricto.
 - **Vite** como bundler y servidor de desarrollo.
 - **React Router** para el enrutado.
-- **CSS Modules** para los estilos, sin librerías de UI.
+- **Bootstrap 5** (CSS) para el layout responsive, los formularios y los componentes.
+- **CSS Modules** encima de Bootstrap para conservar el estilo pixel art: colores, bordes, sombras y tipografía.
 - **ESLint** con las reglas de React y TypeScript.
 
 ## Estructura del proyecto
@@ -60,6 +61,8 @@ src/
 ```
 
 La separación sigue el patrón átomos → moléculas → organismos: los componentes chicos no saben nada del resto y se van componiendo hacia arriba.
+
+Bootstrap se importa una sola vez en `main.tsx` y se usa desde el markup: `container-xxl`, `row`, `col`, breakpoints `row-cols-*`, utilidades de espaciado y flex, `card`, `btn`, `form-control`, `badge` y `modal`. No se carga el JavaScript de Bootstrap: el modal, la sesión y el cierre con Escape siguen controlados por React.
 
 ## Sobre el login
 

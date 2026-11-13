@@ -1,9 +1,3 @@
-.formulario {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
 .titulo {
     color: #d32f2f;
     font-size: 1.25rem;

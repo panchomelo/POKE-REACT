@@ -3,7 +3,6 @@ import FormularioLogin from '../moleculas/FormularioLogin'
 import FormularioRegistro from '../moleculas/FormularioRegistro'
 import PestanasAuth from '../moleculas/PestanasAuth'
 import type { VistaAuth } from '../moleculas/PestanasAuth'
-import estilos from './SeccionAuth.module.css'
 
 type Props = {
   vista: VistaAuth
@@ -28,7 +27,7 @@ const SeccionAuth = ({
   onRegistrarse,
 }: Props) => {
   return (
-    <section className={estilos.seccion}>
+    <section className="d-flex flex-column w-100">
       <PestanasAuth vista={vista} onCambiarVista={onCambiarVista} />
 
       {vista === 'login' ? (

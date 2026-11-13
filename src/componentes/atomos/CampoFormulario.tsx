@@ -21,11 +21,11 @@ const CampoFormulario = ({
 }: Props) => {
   return (
     <>
-      <label className={estilos.etiqueta} htmlFor={id}>
+      <label className={`form-label ${estilos.etiqueta}`} htmlFor={id}>
         {etiqueta}
       </label>
       <input
-        className={estilos.entrada}
+        className={`form-control ${estilos.entrada}`}
         id={id}
         name={name}
         type={type}

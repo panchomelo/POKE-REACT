@@ -9,11 +9,48 @@
 }
 
 /* ==========================================
+   COMPATIBILIDAD CON BOOTSTRAP
+   Bootstrap tiene más especificidad que el reset con *, así que aquí se
+   restauran los valores originales del proyecto.
+========================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote,
+dl,
+dd {
+    margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: bold;
+    line-height: normal;
+}
+
+img,
+svg {
+    vertical-align: baseline;
+}
+
+/* ==========================================
    BODY
 ========================================== */
 
 body {
     font-family: "Courier New", monospace;
+    font-size: 16px;
+    line-height: normal;
     background:
         radial-gradient(circle at center, #3a3a3a 0%, #111 70%);
     min-height: 100vh;
