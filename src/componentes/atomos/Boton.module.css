@@ -1,0 +1,38 @@
+/* Regla compartida que en el CSS original estaba agrupada con
+   .user-session button y .auth-submit. */
+
+.boton {
+    border: 3px solid #111;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: bold;
+}
+
+/* Botón de sesión del header */
+
+.sesion {
+    background: #eeeeee;
+    color: #111;
+    padding: 6px 10px;
+}
+
+/* Pestañas de la tarjeta de autenticación */
+
+.pestana {
+    background: #cccccc;
+    padding: 10px 6px;
+}
+
+.pestana.activo {
+    background: #d92727;
+    color: white;
+}
+
+/* Botón de envío de los formularios */
+
+.enviar {
+    background: #111;
+    color: white;
+    margin-top: 14px;
+    padding: 11px;
+}

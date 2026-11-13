@@ -1,0 +1,22 @@
+.imagen {
+    width: 120px;
+    height: 120px;
+
+    object-fit: contain;
+
+    image-rendering: pixelated;
+
+    position: relative;
+
+    z-index: 1;
+
+    transition:
+        transform 0.12s steps(2);
+}
+
+@media (max-width: 600px) {
+    .imagen {
+        width: 85px;
+        height: 85px;
+    }
+}

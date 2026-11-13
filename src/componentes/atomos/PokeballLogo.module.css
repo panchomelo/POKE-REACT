@@ -1,0 +1,46 @@
+.logo {
+    width: 76px;
+    height: 76px;
+    margin: 0 auto 20px;
+    position: relative;
+
+    background: linear-gradient(
+        to bottom,
+        #f13b3b 0%,
+        #f13b3b 42%,
+        #111 42%,
+        #111 58%,
+        #eeeeee 58%,
+        #eeeeee 100%
+    );
+
+    border: 6px solid #111;
+    border-radius: 0;
+
+    box-shadow: 7px 7px 0 #8e0000;
+}
+
+.logo::after {
+    content: "";
+
+    position: absolute;
+
+    width: 24px;
+    height: 24px;
+
+    background: white;
+
+    border: 6px solid #111;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+@media (max-width: 600px) {
+    .logo {
+        width: 60px;
+        height: 60px;
+    }
+}

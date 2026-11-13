@@ -1,0 +1,96 @@
+.tipo {
+    color: white;
+
+    padding: 5px 9px;
+
+    font-size: 0.65rem;
+
+    font-weight: bold;
+
+    text-transform: uppercase;
+
+    border: 3px solid #111;
+
+    box-shadow: 3px 3px 0 #111;
+
+    letter-spacing: 0.5px;
+}
+
+/* ==========================================
+   TYPE COLORS
+========================================== */
+
+.normal {
+    background: #a8a77a;
+}
+
+.fire {
+    background: #ee8130;
+}
+
+.water {
+    background: #6390f0;
+}
+
+.electric {
+    background: #f7d02c;
+    color: #111;
+}
+
+.grass {
+    background: #7ac74c;
+}
+
+.ice {
+    background: #96d9d6;
+    color: #111;
+}
+
+.fighting {
+    background: #c22e28;
+}
+
+.poison {
+    background: #a33ea1;
+}
+
+.ground {
+    background: #e2bf65;
+    color: #111;
+}
+
+.flying {
+    background: #a98ff3;
+}
+
+.psychic {
+    background: #f95587;
+}
+
+.bug {
+    background: #a6b91a;
+}
+
+.rock {
+    background: #b6a136;
+}
+
+.ghost {
+    background: #735797;
+}
+
+.dragon {
+    background: #6f35fc;
+}
+
+@media (max-width: 600px) {
+    .tipo {
+        font-size: 0.5rem;
+
+        padding: 3px 5px;
+
+        border-width: 2px;
+
+        box-shadow: 2px 2px 0 #111;
+    }
+}

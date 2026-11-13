@@ -1,0 +1,73 @@
+.encabezado {
+    position: relative;
+    background: #d92727;
+    border-bottom: 12px solid #111;
+    padding: 30px 20px 35px;
+    text-align: center;
+    color: white;
+
+    box-shadow:
+        inset 0 -6px 0 #8e0000,
+        inset 0 6px 0 #f54a4a,
+        0 8px 0 #000;
+
+    overflow: hidden;
+}
+
+.encabezado::before,
+.encabezado::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: rgba(0, 0, 0, 0.15);
+}
+
+.encabezado::before {
+    top: 12px;
+}
+
+.encabezado::after {
+    bottom: 12px;
+}
+
+.titulo {
+    font-size: clamp(2rem, 6vw, 4.5rem);
+    font-weight: 900;
+    letter-spacing: 8px;
+
+    color: #fff;
+
+    text-shadow:
+        5px 5px 0 #111;
+}
+
+.subtitulo {
+    margin-top: 15px;
+
+    font-size: 0.85rem;
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    color: white;
+
+    text-shadow: 2px 2px 0 #8e0000;
+}
+
+@media (max-width: 600px) {
+    .encabezado {
+        padding: 25px 15px 30px;
+    }
+
+    .titulo {
+        font-size: 2rem;
+        letter-spacing: 4px;
+    }
+
+    .subtitulo {
+        font-size: 0.65rem;
+        line-height: 1.7;
+    }
+}

@@ -1,0 +1,43 @@
+.pie {
+    margin-top: 50px;
+
+    padding: 30px 20px;
+
+    text-align: center;
+
+    background: #111;
+
+    color: #aaa;
+
+    border-top: 8px solid #d92727;
+
+    box-shadow: inset 0 6px 0 #222;
+}
+
+.texto {
+    margin: 8px 0;
+
+    font-size: 0.75rem;
+
+    letter-spacing: 1px;
+}
+
+.marca {
+    color: white;
+
+    background: #d92727;
+
+    padding: 4px 7px;
+
+    border: 2px solid white;
+}
+
+@media (max-width: 600px) {
+    .pie {
+        padding: 25px 10px;
+    }
+
+    .texto {
+        font-size: 0.6rem;
+    }
+}
