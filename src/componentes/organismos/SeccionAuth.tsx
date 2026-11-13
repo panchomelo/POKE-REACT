@@ -29,17 +29,15 @@ const SeccionAuth = ({
 }: Props) => {
   return (
     <section className={estilos.seccion}>
-      <div className={estilos.tarjeta}>
-        <PestanasAuth vista={vista} onCambiarVista={onCambiarVista} />
+      <PestanasAuth vista={vista} onCambiarVista={onCambiarVista} />
 
-        {vista === 'login' ? (
-          <FormularioLogin onIniciarSesion={onIniciarSesion} />
-        ) : (
-          <FormularioRegistro onRegistrarse={onRegistrarse} />
-        )}
+      {vista === 'login' ? (
+        <FormularioLogin onIniciarSesion={onIniciarSesion} />
+      ) : (
+        <FormularioRegistro onRegistrarse={onRegistrarse} />
+      )}
 
-        <MensajeAuth texto={mensaje.texto} exito={mensaje.exito} />
-      </div>
+      <MensajeAuth texto={mensaje.texto} exito={mensaje.exito} />
     </section>
   )
 }

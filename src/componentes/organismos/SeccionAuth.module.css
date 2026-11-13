@@ -1,11 +1,5 @@
 .seccion {
-    margin: 45px auto;
-    width: min(460px, 92%);
-}
-
-.tarjeta {
-    background: #eeeeee;
-    border: 6px solid #111;
-    box-shadow: 8px 8px 0 #000;
-    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }

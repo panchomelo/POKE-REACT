@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import estilos from './Boton.module.css'
 
-export type VarianteBoton = 'pestana' | 'enviar' | 'sesion'
+export type VarianteBoton = 'accion' | 'pestana' | 'enviar' | 'sesion'
 
 type Props = {
   children: ReactNode

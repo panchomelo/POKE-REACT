@@ -8,6 +8,26 @@
     font-weight: bold;
 }
 
+/* Botones de acceso del header */
+
+.accion {
+    background: #eeeeee;
+    color: #111;
+    font-size: 0.72rem;
+    letter-spacing: 1px;
+    padding: 8px 14px;
+    text-transform: uppercase;
+    transition:
+        background 120ms ease,
+        color 120ms ease;
+}
+
+.accion:hover,
+.accion:focus-visible {
+    background: #111;
+    color: white;
+}
+
 /* Botón de sesión del header */
 
 .sesion {

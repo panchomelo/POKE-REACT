@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import NotaDespliegue from '../componentes/atomos/NotaDespliegue'
 import Encabezado from '../componentes/organismos/Encabezado'
 import Introduccion from '../componentes/organismos/Introduccion'
 import ListaPokemon from '../componentes/organismos/ListaPokemon'
+import ModalAuth from '../componentes/organismos/ModalAuth'
 import PiePagina from '../componentes/organismos/PiePagina'
 import SeccionAuth from '../componentes/organismos/SeccionAuth'
 import type { VistaAuth } from '../componentes/moleculas/PestanasAuth'
@@ -12,11 +13,23 @@ import estilos from './PaginaPokedex.module.css'
 const PaginaPokedex = () => {
   const { usuario, registrar, iniciarSesion, cerrarSesion } = useAuth()
   const [vista, setVista] = useState<VistaAuth>('login')
+  const [authAbierta, setAuthAbierta] = useState(false)
   const [mensaje, setMensaje] = useState({ texto: '', exito: false })
 
   const mostrarMensaje = (texto: string, error = true) => {
     setMensaje({ texto, exito: !error })
   }
+
+  const abrirAuth = (nuevaVista: VistaAuth) => {
+    setVista(nuevaVista)
+    mostrarMensaje('')
+    setAuthAbierta(true)
+  }
+
+  const cerrarAuth = useCallback(() => {
+    setAuthAbierta(false)
+    setMensaje({ texto: '', exito: false })
+  }, [])
 
   const cambiarVista = (nuevaVista: VistaAuth) => {
     setVista(nuevaVista)
@@ -31,6 +44,7 @@ const PaginaPokedex = () => {
       return false
     }
 
+    cerrarAuth()
     return true
   }
 
@@ -58,24 +72,31 @@ const PaginaPokedex = () => {
 
   const manejarCerrarSesion = () => {
     cerrarSesion()
-    cambiarVista('login')
+    cerrarAuth()
   }
 
   return (
     <>
-      <Encabezado usuario={usuario} onCerrarSesion={manejarCerrarSesion} />
+      <Encabezado
+        usuario={usuario}
+        onCerrarSesion={manejarCerrarSesion}
+        onAbrirLogin={() => abrirAuth('login')}
+        onAbrirRegistro={() => abrirAuth('registro')}
+      />
 
-      {usuario ? (
-        <>
-          <main className={estilos.principal}>
-            <Introduccion />
-            <ListaPokemon />
-          </main>
+      <main className={estilos.principal}>
+        <Introduccion />
+        <ListaPokemon />
+      </main>
 
-          <PiePagina />
-          <NotaDespliegue />
-        </>
-      ) : (
+      <PiePagina />
+      <NotaDespliegue />
+
+      <ModalAuth
+        abierto={authAbierta}
+        titulo="Acceso a Pokedurex"
+        onCerrar={cerrarAuth}
+      >
         <SeccionAuth
           vista={vista}
           mensaje={mensaje}
@@ -83,7 +104,7 @@ const PaginaPokedex = () => {
           onIniciarSesion={manejarLogin}
           onRegistrarse={manejarRegistro}
         />
-      )}
+      </ModalAuth>
     </>
   )
 }
