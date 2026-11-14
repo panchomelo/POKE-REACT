@@ -1,16 +1,28 @@
 import { useEffect, useRef } from 'react'
 import type { MouseEvent, ReactNode } from 'react'
-import estilos from './ModalAuth.module.css'
+import estilos from './ModalBase.module.css'
 
 type Props = {
   abierto: boolean
   titulo: string
   onCerrar: () => void
   children: ReactNode
+  claseDialogo?: string
 }
 
-const ModalAuth = ({ abierto, titulo, onCerrar, children }: Props) => {
+const ModalBase = ({
+  abierto,
+  titulo,
+  onCerrar,
+  children,
+  claseDialogo,
+}: Props) => {
   const contenedor = useRef<HTMLDivElement>(null)
+  const cerrarRef = useRef(onCerrar)
+
+  useEffect(() => {
+    cerrarRef.current = onCerrar
+  }, [onCerrar])
 
   useEffect(() => {
     if (!abierto) {
@@ -19,7 +31,7 @@ const ModalAuth = ({ abierto, titulo, onCerrar, children }: Props) => {
 
     const manejarTecla = (evento: KeyboardEvent) => {
       if (evento.key === 'Escape') {
-        onCerrar()
+        cerrarRef.current()
       }
     }
 
@@ -33,7 +45,7 @@ const ModalAuth = ({ abierto, titulo, onCerrar, children }: Props) => {
       document.body.style.overflow = overflowAnterior
       document.removeEventListener('keydown', manejarTecla)
     }
-  }, [abierto, onCerrar])
+  }, [abierto])
 
   if (!abierto) {
     return null
@@ -45,9 +57,18 @@ const ModalAuth = ({ abierto, titulo, onCerrar, children }: Props) => {
     }
   }
 
+  const clasesDialogo = [
+    'modal-dialog',
+    'modal-dialog-centered',
+    estilos.dialogo,
+    claseDialogo,
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   return (
     <div className={`modal d-block ${estilos.fondo}`} onClick={cerrarDesdeFondo}>
-      <div className={`modal-dialog modal-dialog-centered ${estilos.dialogo}`}>
+      <div className={clasesDialogo}>
         <div
           ref={contenedor}
           className={`modal-content p-3 p-md-4 ${estilos.contenedor}`}
@@ -72,4 +93,4 @@ const ModalAuth = ({ abierto, titulo, onCerrar, children }: Props) => {
   )
 }
 
-export default ModalAuth
+export default ModalBase

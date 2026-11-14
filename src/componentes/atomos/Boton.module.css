@@ -103,6 +103,34 @@
     color: white;
 }
 
+/* Botón "Ver" de las tarjetas */
+
+.ver {
+    --bs-btn-bg: #d92727;
+    --bs-btn-border-color: #111;
+    --bs-btn-color: white;
+    --bs-btn-hover-bg: #111;
+    --bs-btn-hover-border-color: #111;
+    --bs-btn-hover-color: white;
+    --bs-btn-active-bg: #111;
+    --bs-btn-active-border-color: #111;
+    --bs-btn-active-color: white;
+
+    background: #d92727;
+    color: white;
+    font-size: 0.72rem;
+    letter-spacing: 1px;
+    padding: 7px 10px;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+.ver:hover,
+.ver:focus-visible {
+    background: #111;
+    color: white;
+}
+
 /* Botón de envío de los formularios */
 
 .enviar {

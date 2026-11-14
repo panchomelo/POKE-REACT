@@ -1,13 +1,14 @@
 import type { ReactNode } from 'react'
 import estilos from './Boton.module.css'
 
-type VarianteBoton = 'accion' | 'pestana' | 'enviar' | 'sesion'
+type VarianteBoton = 'accion' | 'pestana' | 'enviar' | 'sesion' | 'ver'
 
 type Props = {
   children: ReactNode
   variante: VarianteBoton
   type?: 'button' | 'submit'
   activo?: boolean
+  ariaLabel?: string
   onClick?: () => void
 }
 
@@ -16,6 +17,7 @@ const clasesBootstrap: Record<VarianteBoton, string> = {
   pestana: 'btn btn-outline-dark',
   enviar: 'btn btn-dark',
   sesion: 'btn btn-light',
+  ver: 'btn btn-dark',
 }
 
 const Boton = ({
@@ -23,6 +25,7 @@ const Boton = ({
   variante,
   type = 'button',
   activo = false,
+  ariaLabel,
   onClick,
 }: Props) => {
   const clases = [clasesBootstrap[variante], estilos.boton, estilos[variante]]
@@ -32,7 +35,12 @@ const Boton = ({
   }
 
   return (
-    <button type={type} className={clases.join(' ')} onClick={onClick}>
+    <button
+      type={type}
+      className={clases.join(' ')}
+      aria-label={ariaLabel}
+      onClick={onClick}
+    >
       {children}
     </button>
   )

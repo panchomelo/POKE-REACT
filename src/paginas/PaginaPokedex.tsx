@@ -3,7 +3,7 @@ import NotaDespliegue from '../componentes/atomos/NotaDespliegue'
 import Encabezado from '../componentes/organismos/Encabezado'
 import Introduccion from '../componentes/organismos/Introduccion'
 import ListaPokemon from '../componentes/organismos/ListaPokemon'
-import ModalAuth from '../componentes/organismos/ModalAuth'
+import ModalBase from '../componentes/organismos/ModalBase'
 import PiePagina from '../componentes/organismos/PiePagina'
 import SeccionAuth from '../componentes/organismos/SeccionAuth'
 import type { VistaAuth } from '../componentes/moleculas/PestanasAuth'
@@ -91,7 +91,7 @@ const PaginaPokedex = () => {
       <PiePagina />
       <NotaDespliegue />
 
-      <ModalAuth
+      <ModalBase
         abierto={authAbierta}
         titulo="Acceso a Pokedurex"
         onCerrar={cerrarAuth}
@@ -103,7 +103,7 @@ const PaginaPokedex = () => {
           onIniciarSesion={manejarLogin}
           onRegistrarse={manejarRegistro}
         />
-      </ModalAuth>
+      </ModalBase>
     </>
   )
 }

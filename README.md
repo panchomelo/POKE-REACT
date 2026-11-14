@@ -7,6 +7,7 @@ Es un proyecto académico: no hay backend ni pretensiones de producción. La ide
 ## Qué incluye
 
 - Los **151 Pokémon de Kanto** con número, nombre, tipos y sprite de Rojo/Azul.
+- **Vista ampliada de cada Pokémon**: el botón **Ver** abre un modal con el sprite en grande, el número, el nombre y los tipos. Se cierra con la X, un clic fuera o `Escape`.
 - Estilo visual retro: tipografía monoespaciada, sombras duras y efecto CRT con CSS puro.
 - **Login y registro opcionales** desde el header. La Pokédex se ve exactamente igual con sesión o sin ella.
 - Sesión persistida en `localStorage`, así que el nombre se mantiene al recargar.
@@ -47,7 +48,7 @@ src/
 ├── componentes/
 │   ├── atomos/       # Botones, campos, badges, sprites...
 │   ├── moleculas/    # Tarjetas, formularios, panel de sesión...
-│   └── organismos/   # Header, lista, modal de auth, footer...
+│   └── organismos/   # Header, lista, modales, footer...
 ├── datos/
 │   └── pokemon.ts    # Los 151 Pokémon y la URL de los sprites
 ├── hooks/
@@ -62,7 +63,7 @@ src/
 
 La separación sigue el patrón átomos → moléculas → organismos: los componentes chicos no saben nada del resto y se van componiendo hacia arriba.
 
-Bootstrap se importa una sola vez en `main.tsx` y se usa desde el markup: `container-xxl`, `row`, `col`, breakpoints `row-cols-*`, utilidades de espaciado y flex, `card`, `btn`, `form-control`, `badge` y `modal`. No se carga el JavaScript de Bootstrap: el modal, la sesión y el cierre con Escape siguen controlados por React.
+Bootstrap se importa una sola vez en `main.tsx` y se usa desde el markup: `container-xxl`, `row`, `col`, breakpoints `row-cols-*`, utilidades de espaciado y flex, `card`, `btn`, `form-control`, `badge` y `modal`. No se carga el JavaScript de Bootstrap: los modales de autenticación y de Pokémon, la sesión y el cierre con Escape siguen controlados por React. Ambos modales comparten la lógica y el marco de `ModalBase`.
 
 ## Sobre el login
 
