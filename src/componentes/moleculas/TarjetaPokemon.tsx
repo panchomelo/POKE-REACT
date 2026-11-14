@@ -3,7 +3,6 @@ import { urlSpritePokemon } from '../../datos/pokemon'
 import Boton from '../atomos/Boton'
 import ImagenPokemon from '../atomos/ImagenPokemon'
 import NumeroPokemon from '../atomos/NumeroPokemon'
-import TipoPokemon from '../atomos/TipoPokemon'
 import estilos from './TarjetaPokemon.module.css'
 
 interface Props {
@@ -28,19 +27,13 @@ const TarjetaPokemon = ({ pokemon, numero }: Props) => {
 
       <h3 className={`card-title ${estilos.nombre}`}>{pokemon.nombre}</h3>
 
-      <div className="card-text d-flex flex-wrap justify-content-center gap-1">
-        {pokemon.tipos.map((tipo) => (
-          <TipoPokemon key={tipo.nombre} nombre={tipo.nombre} color={tipo.color} />
-        ))}
-      </div>
-
       <div className="mt-auto pt-2">
         <Boton
           variante="ver"
           to={`/pokemon/${numero}`}
-          ariaLabel={`Ver detalle de ${pokemon.nombre}`}
+          ariaLabel={`Ver detalles de ${pokemon.nombre}`}
         >
-          Ver detalle
+          Ver
         </Boton>
       </div>
     </article>

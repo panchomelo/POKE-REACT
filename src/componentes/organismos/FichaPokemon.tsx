@@ -18,11 +18,13 @@ const FichaPokemon = ({ pokemon, numero }: Props) => {
           <NumeroPokemon numero={numero} />
 
           <div className={`ratio ratio-1x1 ${estilos.visor}`}>
-            <ImagenPokemon
-              src={urlSpritePokemon(numero)}
-              alt={pokemon.nombre}
-              className={estilos.sprite}
-            />
+            <div className={estilos.centro}>
+              <ImagenPokemon
+                src={urlSpritePokemon(numero)}
+                alt={pokemon.nombre}
+                className={estilos.sprite}
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -41,10 +43,6 @@ const FichaPokemon = ({ pokemon, numero }: Props) => {
             />
           ))}
         </div>
-
-        <h3 className={`text-center text-md-start ${estilos.etiqueta}`}>
-          Descripción
-        </h3>
 
         <p className={estilos.descripcion}>{pokemon.descripcion}</p>
       </div>

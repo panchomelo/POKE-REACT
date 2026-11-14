@@ -6,8 +6,8 @@ Es un proyecto académico: no hay backend ni pretensiones de producción. La ide
 
 ## Qué incluye
 
-- Los **151 Pokémon de Kanto** con número, nombre, tipos y sprite de Rojo/Azul.
-- **Página de detalle por Pokémon**: el botón **Ver detalle** navega con React Router a `/pokemon/:numero` y muestra el sprite en grande, el número, el nombre, los tipos y una descripción. Un número fuera del rango 1–151 redirige al home.
+- Los **151 Pokémon de Kanto** con número, nombre y sprite de Rojo/Azul. Los tipos se ven en la página de detalle.
+- **Página de detalle por Pokémon**: el botón **Ver** navega con React Router a `/pokemon/:numero` y muestra el sprite en grande, el número, el nombre, los tipos y una descripción. Un número fuera del rango 1–151 redirige al home.
 - Estilo visual retro: tipografía monoespaciada, sombras duras y efecto CRT con CSS puro.
 - **Login y registro opcionales** en `/login` y `/registro`, enlazados desde el header. La Pokédex se ve exactamente igual con sesión o sin ella.
 - **Formularios controlados con `useState`** y validación propia: correo obligatorio y con formato, contraseña obligatoria de mínimo 8 caracteres y mensajes con `alert()`.
@@ -86,7 +86,7 @@ El header y el footer viven en `Layout`, una ruta contenedora con `<Outlet />`. 
 | `/registro`        | `Registro`       | Creación de cuenta.                                      |
 | `*`                | —                | Redirige a `/`.                                          |
 
-`PaginaPokemon` lee `:numero` con `useParams`, busca el Pokémon en los datos y valida que esté entre 1 y 151. Si el valor no es un entero válido, redirige al home. La misma página atiende a los 151 Pokémon, así que no hay una página de detalle distinta por cada uno. El botón **Ver detalle** de cada tarjeta es un `Link` de React Router que apunta a `/pokemon/:numero`.
+`PaginaPokemon` lee `:numero` con `useParams`, busca el Pokémon en los datos y valida que esté entre 1 y 151. Si el valor no es un entero válido, redirige al home. La misma página atiende a los 151 Pokémon, así que no hay una página de detalle distinta por cada uno. El botón **Ver** de cada tarjeta es un `Link` de React Router que apunta a `/pokemon/:numero`.
 
 ## TypeScript
 
