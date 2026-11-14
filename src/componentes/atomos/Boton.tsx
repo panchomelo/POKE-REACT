@@ -1,14 +1,16 @@
 import type { ReactNode } from 'react'
+import { Link } from 'react-router-dom'
 import estilos from './Boton.module.css'
 
 type VarianteBoton = 'accion' | 'pestana' | 'enviar' | 'sesion' | 'ver'
 
-type Props = {
+interface Props {
   children: ReactNode
   variante: VarianteBoton
   type?: 'button' | 'submit'
   activo?: boolean
   ariaLabel?: string
+  to?: string
   onClick?: () => void
 }
 
@@ -26,12 +28,26 @@ const Boton = ({
   type = 'button',
   activo = false,
   ariaLabel,
+  to,
   onClick,
 }: Props) => {
   const clases = [clasesBootstrap[variante], estilos.boton, estilos[variante]]
 
   if (activo) {
     clases.push(estilos.activo)
+  }
+
+  if (to) {
+    return (
+      <Link
+        to={to}
+        className={clases.join(' ')}
+        aria-label={ariaLabel}
+        onClick={onClick}
+      >
+        {children}
+      </Link>
+    )
   }
 
   return (

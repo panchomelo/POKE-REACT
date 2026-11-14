@@ -1,6 +1,6 @@
 import estilos from './MensajeAuth.module.css'
 
-type Props = {
+interface Props {
   texto: string
   exito: boolean
 }

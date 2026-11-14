@@ -6,13 +6,12 @@ import NumeroPokemon from '../atomos/NumeroPokemon'
 import TipoPokemon from '../atomos/TipoPokemon'
 import estilos from './TarjetaPokemon.module.css'
 
-type Props = {
+interface Props {
   pokemon: Pokemon
   numero: number
-  onVer: () => void
 }
 
-const TarjetaPokemon = ({ pokemon, numero, onVer }: Props) => {
+const TarjetaPokemon = ({ pokemon, numero }: Props) => {
   return (
     <article className={`card h-100 p-2 p-md-3 ${estilos.tarjeta}`}>
       <NumeroPokemon numero={numero} />
@@ -38,10 +37,10 @@ const TarjetaPokemon = ({ pokemon, numero, onVer }: Props) => {
       <div className="mt-auto pt-2">
         <Boton
           variante="ver"
-          ariaLabel={`Ver detalles de ${pokemon.nombre}`}
-          onClick={onVer}
+          to={`/pokemon/${numero}`}
+          ariaLabel={`Ver detalle de ${pokemon.nombre}`}
         >
-          Ver
+          Ver detalle
         </Boton>
       </div>
     </article>

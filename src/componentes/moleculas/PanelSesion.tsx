@@ -1,7 +1,7 @@
 import Boton from '../atomos/Boton'
 import estilos from './PanelSesion.module.css'
 
-type Props = {
+interface Props {
   nombre: string
   onCerrarSesion: () => void
 }

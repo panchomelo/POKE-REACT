@@ -2,20 +2,15 @@ import Boton from '../atomos/Boton'
 
 export type VistaAuth = 'login' | 'registro'
 
-type Props = {
+interface Props {
   vista: VistaAuth
-  onCambiarVista: (vista: VistaAuth) => void
 }
 
-const PestanasAuth = ({ vista, onCambiarVista }: Props) => {
+const PestanasAuth = ({ vista }: Props) => {
   return (
     <div className="row g-2 mb-4">
       <div className="col">
-        <Boton
-          variante="pestana"
-          activo={vista === 'login'}
-          onClick={() => onCambiarVista('login')}
-        >
+        <Boton variante="pestana" to="/login" activo={vista === 'login'}>
           Iniciar sesión
         </Boton>
       </div>
@@ -23,8 +18,8 @@ const PestanasAuth = ({ vista, onCambiarVista }: Props) => {
       <div className="col">
         <Boton
           variante="pestana"
+          to="/registro"
           activo={vista === 'registro'}
-          onClick={() => onCambiarVista('registro')}
         >
           Registrarse
         </Boton>

@@ -1,7 +1,7 @@
 import type { ColorTipo } from '../../datos/pokemon'
 import estilos from './TipoPokemon.module.css'
 
-type Props = {
+interface Props {
   nombre: string
   color: ColorTipo | null
 }

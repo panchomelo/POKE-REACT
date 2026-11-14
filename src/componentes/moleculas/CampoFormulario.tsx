@@ -1,13 +1,14 @@
+import Input from '../atomos/Input'
 import estilos from './CampoFormulario.module.css'
 
-type Props = {
+interface Props {
   id: string
   name: string
   etiqueta: string
   type: 'text' | 'email' | 'password'
+  value: string
+  onChange: (valor: string) => void
   autoComplete?: string
-  required?: boolean
-  minLength?: number
 }
 
 const CampoFormulario = ({
@@ -15,23 +16,23 @@ const CampoFormulario = ({
   name,
   etiqueta,
   type,
+  value,
+  onChange,
   autoComplete,
-  required = false,
-  minLength,
 }: Props) => {
   return (
     <>
       <label className={`form-label ${estilos.etiqueta}`} htmlFor={id}>
         {etiqueta}
       </label>
-      <input
-        className={`form-control ${estilos.entrada}`}
+
+      <Input
         id={id}
         name={name}
         type={type}
+        value={value}
+        onChange={(evento) => onChange(evento.target.value)}
         autoComplete={autoComplete}
-        required={required}
-        minLength={minLength}
       />
     </>
   )

@@ -1,28 +1,42 @@
+import { useState } from 'react'
 import type { FormEvent } from 'react'
+import { validarContrasena, validarCorreo } from '../../validaciones/auth'
 import Boton from '../atomos/Boton'
-import CampoFormulario from '../atomos/CampoFormulario'
-import estilos from './formulario.module.css'
+import CampoFormulario from '../moleculas/CampoFormulario'
+import estilos from './Formulario.module.css'
 
-type Props = {
+interface Props {
   onIniciarSesion: (email: string, contrasena: string) => boolean
 }
 
 const FormularioLogin = ({ onIniciarSesion }: Props) => {
+  const [correo, setCorreo] = useState('')
+  const [contrasena, setContrasena] = useState('')
+
   const manejarEnvio = (evento: FormEvent<HTMLFormElement>) => {
     evento.preventDefault()
 
-    const datos = new FormData(evento.currentTarget)
-    const email = String(datos.get('email') ?? '')
-    const contrasena = String(datos.get('contrasena') ?? '')
+    const errorCorreo = validarCorreo(correo)
 
-    if (onIniciarSesion(email, contrasena)) {
-      evento.currentTarget.reset()
+    if (errorCorreo) {
+      alert(errorCorreo)
+      return
     }
+
+    const errorContrasena = validarContrasena(contrasena)
+
+    if (errorContrasena) {
+      alert(errorContrasena)
+      return
+    }
+
+    onIniciarSesion(correo.trim().toLowerCase(), contrasena)
   }
 
   return (
     <form
       className="d-flex flex-column gap-2"
+      noValidate
       onSubmit={manejarEnvio}
     >
       <h2 className={estilos.titulo}>Acceso al sistema</h2>
@@ -32,7 +46,8 @@ const FormularioLogin = ({ onIniciarSesion }: Props) => {
         name="email"
         etiqueta="Correo electrónico"
         type="email"
-        required
+        value={correo}
+        onChange={setCorreo}
         autoComplete="email"
       />
 
@@ -41,7 +56,8 @@ const FormularioLogin = ({ onIniciarSesion }: Props) => {
         name="contrasena"
         etiqueta="Contraseña"
         type="password"
-        required
+        value={contrasena}
+        onChange={setContrasena}
         autoComplete="current-password"
       />
 

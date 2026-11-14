@@ -1,6 +1,6 @@
 import estilos from './ImagenPokemon.module.css'
 
-type Props = {
+interface Props {
   src: string
   alt: string
   className?: string

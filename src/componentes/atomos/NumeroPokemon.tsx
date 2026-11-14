@@ -1,6 +1,6 @@
 import estilos from './NumeroPokemon.module.css'
 
-type Props = {
+interface Props {
   numero: number
 }
 

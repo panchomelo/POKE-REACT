@@ -1,21 +1,7 @@
 import { useCallback, useState } from 'react'
-
-/**
- * El usuario se persiste con la forma { name, email, password } porque es
- * exactamente la que guardaba el proyecto original en localStorage. Así las
- * cuentas creadas antes de la migración siguen funcionando.
- */
-export type Usuario = {
-  name: string
-  email: string
-  password: string
-}
-
-type NuevoUsuario = {
-  name: string
-  email: string
-  password: string
-}
+import type { ReactNode } from 'react'
+import { AuthContexto } from './authContexto'
+import type { NuevoUsuario, ResultadoRegistro, Usuario } from './authContexto'
 
 const CLAVE_USUARIOS = 'pokedurexUsuarios'
 const CLAVE_SESION = 'pokedurexSesion'
@@ -42,9 +28,11 @@ const leerSesion = (): Usuario | null => {
   }
 }
 
-type ResultadoRegistro = 'creado' | 'duplicado'
+interface Props {
+  children: ReactNode
+}
 
-export const useAuth = () => {
+const AuthProvider = ({ children }: Props) => {
   const [usuario, setUsuario] = useState<Usuario | null>(leerSesion)
 
   const registrar = useCallback((datos: NuevoUsuario): ResultadoRegistro => {
@@ -80,5 +68,13 @@ export const useAuth = () => {
     setUsuario(null)
   }, [])
 
-  return { usuario, registrar, iniciarSesion, cerrarSesion }
+  return (
+    <AuthContexto.Provider
+      value={{ usuario, registrar, iniciarSesion, cerrarSesion }}
+    >
+      {children}
+    </AuthContexto.Provider>
+  )
 }
+
+export default AuthProvider

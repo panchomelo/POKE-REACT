@@ -1,9 +1,15 @@
+import { useState } from 'react'
 import type { FormEvent } from 'react'
+import {
+  validarContrasena,
+  validarCorreo,
+  validarNombre,
+} from '../../validaciones/auth'
 import Boton from '../atomos/Boton'
-import CampoFormulario from '../atomos/CampoFormulario'
-import estilos from './formulario.module.css'
+import CampoFormulario from '../moleculas/CampoFormulario'
+import estilos from './Formulario.module.css'
 
-type Props = {
+interface Props {
   onRegistrarse: (
     nombre: string,
     email: string,
@@ -12,22 +18,51 @@ type Props = {
 }
 
 const FormularioRegistro = ({ onRegistrarse }: Props) => {
+  const [nombre, setNombre] = useState('')
+  const [correo, setCorreo] = useState('')
+  const [contrasena, setContrasena] = useState('')
+
   const manejarEnvio = (evento: FormEvent<HTMLFormElement>) => {
     evento.preventDefault()
 
-    const datos = new FormData(evento.currentTarget)
-    const nombre = String(datos.get('nombre') ?? '')
-    const email = String(datos.get('email') ?? '')
-    const contrasena = String(datos.get('contrasena') ?? '')
+    const errorNombre = validarNombre(nombre)
 
-    if (onRegistrarse(nombre, email, contrasena)) {
-      evento.currentTarget.reset()
+    if (errorNombre) {
+      alert(errorNombre)
+      return
+    }
+
+    const errorCorreo = validarCorreo(correo)
+
+    if (errorCorreo) {
+      alert(errorCorreo)
+      return
+    }
+
+    const errorContrasena = validarContrasena(contrasena)
+
+    if (errorContrasena) {
+      alert(errorContrasena)
+      return
+    }
+
+    if (
+      onRegistrarse(
+        nombre.trim(),
+        correo.trim().toLowerCase(),
+        contrasena,
+      )
+    ) {
+      setNombre('')
+      setCorreo('')
+      setContrasena('')
     }
   }
 
   return (
     <form
       className="d-flex flex-column gap-2"
+      noValidate
       onSubmit={manejarEnvio}
     >
       <h2 className={estilos.titulo}>Crear cuenta</h2>
@@ -37,7 +72,8 @@ const FormularioRegistro = ({ onRegistrarse }: Props) => {
         name="nombre"
         etiqueta="Nombre"
         type="text"
-        required
+        value={nombre}
+        onChange={setNombre}
         autoComplete="name"
       />
 
@@ -46,7 +82,8 @@ const FormularioRegistro = ({ onRegistrarse }: Props) => {
         name="email"
         etiqueta="Correo electrónico"
         type="email"
-        required
+        value={correo}
+        onChange={setCorreo}
         autoComplete="email"
       />
 
@@ -55,8 +92,8 @@ const FormularioRegistro = ({ onRegistrarse }: Props) => {
         name="contrasena"
         etiqueta="Contraseña"
         type="password"
-        required
-        minLength={4}
+        value={contrasena}
+        onChange={setContrasena}
         autoComplete="new-password"
       />
 

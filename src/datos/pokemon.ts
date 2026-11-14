@@ -7,6 +7,8 @@
  * segundo tipo); se conservan tal cual para que el clon sea idéntico.
  */
 
+import { descripciones } from './descripciones'
+
 export type ColorTipo =
   | 'normal'
   | 'fire'
@@ -24,7 +26,7 @@ export type ColorTipo =
   | 'ghost'
   | 'dragon'
 
-export type TipoPokemon = {
+export interface TipoPokemon {
   nombre: string
   /**
    * null cuando el proyecto original no definía color para ese tipo
@@ -34,9 +36,10 @@ export type TipoPokemon = {
   color: ColorTipo | null
 }
 
-export type Pokemon = {
+export interface Pokemon {
   nombre: string
   tipos: TipoPokemon[]
+  descripcion: string
 }
 
 type FilaPokemon = [
@@ -201,6 +204,9 @@ const filas: FilaPokemon[] = [
 export const pokemones: Pokemon[] = filas.map(([nombre, tipos]) => ({
   nombre,
   tipos: tipos.map(([nombreTipo, color]) => ({ nombre: nombreTipo, color })),
+  descripcion:
+    descripciones[nombre] ??
+    `${nombre} es un Pokémon de la región de Kanto.`,
 }))
 
 export const urlSpritePokemon = (numero: number) =>
