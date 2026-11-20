@@ -8,7 +8,7 @@ interface Props {
 
 const PanelSesion = ({ nombre, onCerrarSesion }: Props) => {
   return (
-    <div className="d-flex align-items-center justify-content-center gap-2 mt-3">
+    <div className="d-flex align-items-center justify-content-center gap-2">
       <span className={estilos.texto}>Usuario: {nombre}</span>
       <Boton variante="sesion" onClick={onCerrarSesion}>
         Cerrar sesión

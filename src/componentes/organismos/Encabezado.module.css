@@ -52,3 +52,91 @@
 
     text-shadow: 2px 2px 0 #8e0000;
 }
+
+/* ==========================================
+   BARRA DE NAVEGACIÓN
+========================================== */
+
+.barra {
+    background: #111;
+
+    border: 3px solid #111;
+    border-radius: 0;
+
+    margin-bottom: 18px;
+    padding: 6px 10px;
+}
+
+.barra .marca {
+    color: #fff;
+
+    font-size: 0.78rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+.barra .marca:hover,
+.barra .marca:focus-visible {
+    color: #f54a4a;
+}
+
+.barra .enlace {
+    border: 2px solid transparent;
+    color: #eee;
+
+    font-size: 0.72rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+
+    padding: 6px 10px;
+
+    text-transform: uppercase;
+}
+
+.barra .enlace:hover,
+.barra .enlace:focus-visible {
+    border-color: #fff;
+    color: #fff;
+}
+
+.barra .activo,
+.barra .activo:hover {
+    background: #d92727;
+
+    border-color: #d92727;
+    color: #fff;
+}
+
+.toggler {
+    background: transparent;
+
+    border: 2px solid #eee;
+    border-radius: 0;
+
+    padding: 5px 7px;
+}
+
+.toggler:focus-visible {
+    box-shadow: none;
+
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+.iconoMenu {
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+.iconoMenu span {
+    display: block;
+
+    background: #eee;
+
+    height: 3px;
+    width: 22px;
+}

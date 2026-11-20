@@ -9,7 +9,7 @@ const PaginaPokemon = () => {
   const indice = Number(numero)
 
   if (!Number.isInteger(indice) || indice < 1 || indice > pokemones.length) {
-    return <Navigate to="/" replace />
+    return <Navigate to="/pokedex" replace />
   }
 
   const pokemon = pokemones[indice - 1]
@@ -23,7 +23,7 @@ const PaginaPokemon = () => {
               <FichaPokemon pokemon={pokemon} numero={indice} />
 
               <div className="d-flex justify-content-center mt-3">
-                <Boton variante="accion" to="/">
+                <Boton variante="accion" to="/pokedex">
                   Volver a la Pokédex
                 </Boton>
               </div>

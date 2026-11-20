@@ -1,0 +1,34 @@
+.cabecera {
+    background: #e8e8e8;
+
+    border: 6px solid #111;
+    border-radius: 0;
+    box-shadow: 8px 8px 0 #000;
+
+    margin-bottom: 30px;
+    padding: 22px 16px;
+
+    text-align: center;
+}
+
+.titulo {
+    color: #d32f2f;
+
+    font-size: clamp(1.4rem, 4vw, 1.8rem);
+    letter-spacing: 2px;
+
+    margin-bottom: 10px;
+
+    text-transform: uppercase;
+
+    text-shadow: 2px 2px 0 #aaa;
+}
+
+.texto {
+    font-size: 0.8rem;
+    font-weight: bold;
+
+    line-height: 1.7;
+
+    margin: 0;
+}

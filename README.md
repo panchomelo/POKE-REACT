@@ -6,10 +6,12 @@ Es un proyecto académico: no hay backend ni pretensiones de producción. La ide
 
 ## Qué incluye
 
-- Los **151 Pokémon de Kanto** con número, nombre y sprite de Rojo/Azul. Los tipos se ven en la página de detalle.
-- **Página de detalle por Pokémon**: el botón **Ver** navega con React Router a `/pokemon/:numero` y muestra el sprite en grande, el número, el nombre, los tipos y una descripción. Un número fuera del rango 1–151 redirige al home.
+- **Home separado** en `/`: portada ilustrada de Kanto y botón para entrar a la Pokédex.
+- Los **151 Pokémon de Kanto** en `/pokedex` con número, nombre y sprite de Rojo/Azul. Los tipos se ven en la página de detalle.
+- **Página de detalle por Pokémon**: el botón **Ver** navega con React Router a `/pokemon/:numero` y muestra el sprite en grande, el número, el nombre, los tipos y una descripción. Un número fuera del rango 1–151 redirige a la Pokédex. El botón **Volver a la Pokédex** regresa a `/pokedex`.
 - Estilo visual retro: tipografía monoespaciada, sombras duras y efecto CRT con CSS puro.
-- **Login y registro opcionales** en `/login` y `/registro`, enlazados desde el header. La Pokédex se ve exactamente igual con sesión o sin ella.
+- **Navbar de Bootstrap** con marca, enlaces **Inicio** y **Pokédex**, accesos de sesión y menú hamburguesa en móvil. El estado del menú se controla con React, sin el JavaScript de Bootstrap.
+- **Login y registro opcionales** en `/login` y `/registro`, enlazados desde la navbar. La Pokédex se ve exactamente igual con sesión o sin ella.
 - **Formularios controlados con `useState`** y validación propia: correo obligatorio y con formato, contraseña obligatoria de mínimo 8 caracteres y mensajes con `alert()`.
 - Sesión persistida en `localStorage` y compartida por toda la app mediante un contexto de React.
 - **Diseño responsive con Bootstrap 5**: grid, utilidades y componentes adaptan columnas, espaciados y alineación en móvil, tablet y escritorio.
@@ -60,6 +62,7 @@ src/
 ├── validaciones/
 │   └── auth.ts       # Reglas de nombre, correo y contraseña
 ├── paginas/
+│   ├── PaginaInicio.tsx
 │   ├── PaginaPokedex.tsx
 │   ├── PaginaPokemon.tsx
 │   ├── Login.tsx
@@ -72,21 +75,22 @@ src/
 
 La separación sigue el patrón átomos → moléculas → organismos: los componentes chicos no saben nada del resto y se van componiendo hacia arriba.
 
-Bootstrap se importa una sola vez en `main.tsx` y se usa desde el markup: `container-xxl`, `row`, `col`, breakpoints `row-cols-*`, utilidades de espaciado y flex, `card`, `btn`, `form-control` y `badge`. No se carga el JavaScript de Bootstrap: la sesión y la navegación siguen controladas por React.
+Bootstrap se importa una sola vez en `main.tsx` y se usa desde el markup: `navbar`, `container-xxl`, `row`, `col`, breakpoints `row-cols-*`, utilidades de espaciado y flex, `card`, `btn`, `form-control` y `badge`. No se carga el JavaScript de Bootstrap: el menú de la navbar, la sesión y la navegación siguen controlados por React.
 
-El header y el footer viven en `Layout`, una ruta contenedora con `<Outlet />`. Así el header aparece en todas las páginas y agregar una página nueva solo requiere una ruta y un componente de página.
+El header, la navbar y el footer viven en `Layout`, una ruta contenedora con `<Outlet />`. Así aparecen en todas las páginas y agregar una página nueva solo requiere una ruta y un componente de página.
 
 ## Rutas
 
 | Ruta               | Página           | Descripción                                              |
 | ------------------ | ---------------- | -------------------------------------------------------- |
-| `/`                | `PaginaPokedex`  | Lista de los 151 Pokémon.                                |
+| `/`                | `PaginaInicio`   | Home con bienvenida, acceso y Pokémon destacados.        |
+| `/pokedex`         | `PaginaPokedex`  | Lista de los 151 Pokémon.                                |
 | `/pokemon/:numero` | `PaginaPokemon`  | Detalle con descripción. `:numero` es la ruta dinámica.  |
 | `/login`           | `Login`          | Inicio de sesión.                                        |
 | `/registro`        | `Registro`       | Creación de cuenta.                                      |
 | `*`                | —                | Redirige a `/`.                                          |
 
-`PaginaPokemon` lee `:numero` con `useParams`, busca el Pokémon en los datos y valida que esté entre 1 y 151. Si el valor no es un entero válido, redirige al home. La misma página atiende a los 151 Pokémon, así que no hay una página de detalle distinta por cada uno. El botón **Ver** de cada tarjeta es un `Link` de React Router que apunta a `/pokemon/:numero`.
+`PaginaPokemon` lee `:numero` con `useParams`, busca el Pokémon en los datos y valida que esté entre 1 y 151. Si el valor no es un entero válido, redirige a la Pokédex. La misma página atiende a los 151 Pokémon, así que no hay una página de detalle distinta por cada uno. El botón **Ver** de cada tarjeta es un `Link` de React Router que apunta a `/pokemon/:numero`.
 
 ## TypeScript
 
