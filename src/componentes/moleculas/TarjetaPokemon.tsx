@@ -31,7 +31,7 @@ const TarjetaPokemon = ({ pokemon, numero }: Props) => {
         <Boton
           variante="ver"
           to={`/pokemon/${numero}`}
-          ariaLabel={`Ver detalles de ${pokemon.nombre}`}
+          ariaLabel={`Ver detalle de ${pokemon.nombre}`}
         >
           Ver
         </Boton>
