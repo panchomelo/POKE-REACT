@@ -12,6 +12,7 @@ interface Props {
   ariaLabel?: string
   to?: string
   onClick?: () => void
+  disabled?: boolean
 }
 
 const clasesBootstrap: Record<VarianteBoton, string> = {
@@ -30,6 +31,7 @@ const Boton = ({
   ariaLabel,
   to,
   onClick,
+  disabled = false,
 }: Props) => {
   const clases = [clasesBootstrap[variante], estilos.boton, estilos[variante]]
 
@@ -43,6 +45,7 @@ const Boton = ({
         to={to}
         className={clases.join(' ')}
         aria-label={ariaLabel}
+        aria-disabled={disabled || undefined}
         onClick={onClick}
       >
         {children}
@@ -56,6 +59,7 @@ const Boton = ({
       className={clases.join(' ')}
       aria-label={ariaLabel}
       onClick={onClick}
+      disabled={disabled}
     >
       {children}
     </button>

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../contextos/authContexto'
+import { mensajeDeError } from '../servicios/api'
 import FormularioRegistro from '../componentes/organismos/FormularioRegistro'
 import LayoutAuth from '../componentes/organismos/LayoutAuth'
 
@@ -13,20 +14,20 @@ const Registro = () => {
     exito: false,
   })
 
-  const manejarRegistro = (
+  const manejarRegistro = async (
     nombre: string,
     email: string,
     contrasena: string,
-  ) => {
-    const resultado = registrar({
-      name: nombre,
-      email,
-      password: contrasena,
-    })
-
-    if (resultado === 'duplicado') {
+  ): Promise<boolean> => {
+    try {
+      await registrar({
+        name: nombre,
+        email,
+        password: contrasena,
+      })
+    } catch (error) {
       setMensaje({
-        texto: 'Ya existe una cuenta con ese correo.',
+        texto: mensajeDeError(error),
         exito: false,
       })
       return false

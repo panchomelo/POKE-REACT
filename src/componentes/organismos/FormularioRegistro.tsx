@@ -14,15 +14,16 @@ interface Props {
     nombre: string,
     email: string,
     contrasena: string,
-  ) => boolean
+  ) => Promise<boolean>
 }
 
 const FormularioRegistro = ({ onRegistrarse }: Props) => {
   const [nombre, setNombre] = useState('')
   const [correo, setCorreo] = useState('')
   const [contrasena, setContrasena] = useState('')
+  const [enviando, setEnviando] = useState(false)
 
-  const manejarEnvio = (evento: FormEvent<HTMLFormElement>) => {
+  const manejarEnvio = async (evento: FormEvent<HTMLFormElement>) => {
     evento.preventDefault()
 
     const errorNombre = validarNombre(nombre)
@@ -46,16 +47,22 @@ const FormularioRegistro = ({ onRegistrarse }: Props) => {
       return
     }
 
-    if (
-      onRegistrarse(
+    setEnviando(true)
+
+    try {
+      const exito = await onRegistrarse(
         nombre.trim(),
         correo.trim().toLowerCase(),
         contrasena,
       )
-    ) {
-      setNombre('')
-      setCorreo('')
-      setContrasena('')
+
+      if (exito) {
+        setNombre('')
+        setCorreo('')
+        setContrasena('')
+      }
+    } finally {
+      setEnviando(false)
     }
   }
 
@@ -97,8 +104,8 @@ const FormularioRegistro = ({ onRegistrarse }: Props) => {
         autoComplete="new-password"
       />
 
-      <Boton variante="enviar" type="submit">
-        Crear cuenta
+      <Boton variante="enviar" type="submit" disabled={enviando}>
+        {enviando ? 'Creando cuenta...' : 'Crear cuenta'}
       </Boton>
     </form>
   )

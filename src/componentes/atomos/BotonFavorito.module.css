@@ -1,0 +1,51 @@
+.boton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #eeeeee;
+
+    border: 3px solid #111;
+    border-radius: 0;
+
+    box-shadow: 3px 3px 0 #000;
+
+    color: #d92727;
+
+    cursor: pointer;
+
+    font-family: inherit;
+    font-size: 1.1rem;
+    font-weight: bold;
+    line-height: 1;
+
+    min-width: 40px;
+    padding: 7px 8px;
+}
+
+.boton:hover,
+.boton:focus-visible {
+    background: #111;
+    color: #ffd700;
+}
+
+.boton:focus-visible {
+    outline: 3px solid #111;
+    outline-offset: 2px;
+}
+
+.boton:disabled {
+    cursor: wait;
+    opacity: 0.6;
+}
+
+.activo {
+    background: #ffd700;
+    color: #111;
+}
+
+.activo:hover,
+.activo:focus-visible {
+    background: #111;
+    color: #ffd700;
+}

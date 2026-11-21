@@ -1,4 +1,5 @@
 import Boton from '../componentes/atomos/Boton'
+import SeccionFavoritos from '../componentes/organismos/SeccionFavoritos'
 import estilos from './PaginaInicio.module.css'
 
 const PaginaInicio = () => {
@@ -30,6 +31,8 @@ const PaginaInicio = () => {
           </div>
         </div>
       </section>
+
+      <SeccionFavoritos />
     </main>
   )
 }

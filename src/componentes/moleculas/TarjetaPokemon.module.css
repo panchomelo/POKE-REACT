@@ -70,6 +70,17 @@
     transform: scale(1.12);
 }
 
+.acciones {
+    display: flex;
+    align-items: stretch;
+    gap: 8px;
+}
+
+.contenedorVer {
+    flex: 1;
+    min-width: 0;
+}
+
 .nombre {
     text-align: center;
 

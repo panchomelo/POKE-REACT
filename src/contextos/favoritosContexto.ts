@@ -1,0 +1,39 @@
+import { createContext, useContext } from 'react'
+
+export interface Favorito {
+  id: number
+  pokemonId: number
+  alias: string | null
+  createdAt: string
+}
+
+export interface FavoritoAdmin extends Favorito {
+  user: {
+    id: number
+    name: string
+    email: string
+  }
+}
+
+export interface FavoritosContextoValor {
+  favoritos: Favorito[]
+  cargando: boolean
+  error: string
+  esFavorito: (pokemonId: number) => boolean
+  alternarFavorito: (pokemonId: number) => Promise<void>
+  actualizarAlias: (id: number, alias: string) => Promise<void>
+  recargar: () => Promise<void>
+}
+
+export const FavoritosContexto =
+  createContext<FavoritosContextoValor | null>(null)
+
+export const useFavoritos = () => {
+  const contexto = useContext(FavoritosContexto)
+
+  if (!contexto) {
+    throw new Error('useFavoritos debe usarse dentro de FavoritosProvider')
+  }
+
+  return contexto
+}

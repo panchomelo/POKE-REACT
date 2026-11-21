@@ -103,6 +103,18 @@ const Encabezado = ({ usuario, onCerrarSesion }: Props) => {
                 </li>
               )}
 
+              {usuario?.role === 'ADMIN' && (
+                <li className="nav-item">
+                  <NavLink
+                    to="/admin/favoritos"
+                    className={clasesEnlace}
+                    onClick={cerrarMenu}
+                  >
+                    Admin
+                  </NavLink>
+                </li>
+              )}
+
               {usuario && (
                 <li className="nav-item">
                   <PanelSesion

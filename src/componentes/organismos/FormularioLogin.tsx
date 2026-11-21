@@ -6,14 +6,15 @@ import CampoFormulario from '../moleculas/CampoFormulario'
 import estilos from './Formulario.module.css'
 
 interface Props {
-  onIniciarSesion: (email: string, contrasena: string) => boolean
+  onIniciarSesion: (email: string, contrasena: string) => Promise<boolean>
 }
 
 const FormularioLogin = ({ onIniciarSesion }: Props) => {
   const [correo, setCorreo] = useState('')
   const [contrasena, setContrasena] = useState('')
+  const [enviando, setEnviando] = useState(false)
 
-  const manejarEnvio = (evento: FormEvent<HTMLFormElement>) => {
+  const manejarEnvio = async (evento: FormEvent<HTMLFormElement>) => {
     evento.preventDefault()
 
     const errorCorreo = validarCorreo(correo)
@@ -30,7 +31,13 @@ const FormularioLogin = ({ onIniciarSesion }: Props) => {
       return
     }
 
-    onIniciarSesion(correo.trim().toLowerCase(), contrasena)
+    setEnviando(true)
+
+    try {
+      await onIniciarSesion(correo.trim().toLowerCase(), contrasena)
+    } finally {
+      setEnviando(false)
+    }
   }
 
   return (
@@ -61,8 +68,8 @@ const FormularioLogin = ({ onIniciarSesion }: Props) => {
         autoComplete="current-password"
       />
 
-      <Boton variante="enviar" type="submit">
-        Entrar a la Pokedurex
+      <Boton variante="enviar" type="submit" disabled={enviando}>
+        {enviando ? 'Entrando...' : 'Entrar a la Pokedurex'}
       </Boton>
     </form>
   )

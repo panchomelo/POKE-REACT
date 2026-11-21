@@ -1,0 +1,115 @@
+.cabecera {
+    background: #e8e8e8;
+
+    border: 6px solid #111;
+    border-radius: 0;
+    box-shadow: 8px 8px 0 #000;
+
+    margin-bottom: 24px;
+    padding: 22px 16px;
+
+    text-align: center;
+}
+
+.etiqueta {
+    color: #d92727;
+
+    font-size: 0.7rem;
+    font-weight: bold;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 6px;
+
+    text-transform: uppercase;
+}
+
+.titulo {
+    color: #d92727;
+
+    font-size: clamp(1.4rem, 4vw, 1.8rem);
+    letter-spacing: 2px;
+
+    margin-bottom: 10px;
+
+    text-transform: uppercase;
+
+    text-shadow: 2px 2px 0 #aaa;
+}
+
+.texto {
+    font-size: 0.8rem;
+    font-weight: bold;
+
+    line-height: 1.7;
+
+    margin: 0;
+}
+
+.estado {
+    background: #eeeeee;
+
+    border: 4px solid #111;
+    box-shadow: 5px 5px 0 #000;
+
+    font-size: 0.8rem;
+    font-weight: bold;
+
+    padding: 20px;
+
+    text-align: center;
+}
+
+.tablaContenedor {
+    background: #eeeeee;
+
+    border: 5px solid #111;
+    box-shadow: 7px 7px 0 #000;
+
+    padding: 8px;
+}
+
+.tabla {
+    font-size: 0.78rem;
+
+    margin: 0;
+}
+
+.tabla thead th {
+    background: #111;
+
+    border-color: #111;
+    color: #fff;
+
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+}
+
+.tabla tbody td {
+    border-color: #bbb;
+}
+
+.sprite {
+    width: 42px;
+    height: 42px;
+
+    image-rendering: pixelated;
+
+    object-fit: contain;
+}
+
+.usuario {
+    display: block;
+
+    font-weight: bold;
+}
+
+.correo {
+    color: #555;
+
+    display: block;
+
+    font-size: 0.68rem;
+}

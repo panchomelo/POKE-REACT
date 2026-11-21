@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../contextos/authContexto'
+import { mensajeDeError } from '../servicios/api'
 import FormularioLogin from '../componentes/organismos/FormularioLogin'
 import LayoutAuth from '../componentes/organismos/LayoutAuth'
 
@@ -22,10 +23,15 @@ const Login = () => {
     exito: Boolean(estado?.mensaje),
   })
 
-  const manejarLogin = (email: string, contrasena: string) => {
-    if (!iniciarSesion(email, contrasena)) {
+  const manejarLogin = async (
+    email: string,
+    contrasena: string,
+  ): Promise<boolean> => {
+    try {
+      await iniciarSesion(email, contrasena)
+    } catch (error) {
       setMensaje({
-        texto: 'Correo o contraseña incorrectos.',
+        texto: mensajeDeError(error),
         exito: false,
       })
       return false

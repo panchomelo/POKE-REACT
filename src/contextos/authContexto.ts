@@ -1,14 +1,16 @@
 import { createContext, useContext } from 'react'
 
+export type Rol = 'USER' | 'ADMIN'
+
 /**
- * El usuario se persiste con la forma { name, email, password } porque es
- * exactamente la que guardaba el proyecto original en localStorage. Así las
- * cuentas creadas antes de la migración siguen funcionando.
+ * La sesión guarda el token JWT y el usuario. La contraseña nunca se persiste
+ * en el frontend: solo viaja al backend para registrarse o iniciar sesión.
  */
 export interface Usuario {
+  id: number
   name: string
   email: string
-  password: string
+  role: Rol
 }
 
 export interface NuevoUsuario {
@@ -17,12 +19,18 @@ export interface NuevoUsuario {
   password: string
 }
 
-export type ResultadoRegistro = 'creado' | 'duplicado'
+export interface RespuestaAuth {
+  token: string
+  user: Usuario
+}
 
 export interface AuthContextoValor {
   usuario: Usuario | null
-  registrar: (datos: NuevoUsuario) => ResultadoRegistro
-  iniciarSesion: (email: string, password: string) => boolean
+  token: string | null
+  esAdmin: boolean
+  cargandoSesion: boolean
+  registrar: (datos: NuevoUsuario) => Promise<Usuario>
+  iniciarSesion: (email: string, password: string) => Promise<Usuario>
   cerrarSesion: () => void
 }
 
