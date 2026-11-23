@@ -10,9 +10,9 @@ El registro y el inicio de sesión se apoyan en un backend Spring Boot con MySQL
 - Los **151 Pokémon de Kanto** en `/pokedex` con número, nombre y sprite de Rojo/Azul. Los tipos se ven en la página de detalle.
 - **Página de detalle por Pokémon**: el botón **Ver** navega con React Router a `/pokemon/:numero` y muestra el sprite en grande, el número, el nombre, los tipos y una descripción. Un número fuera del rango 1–151 redirige a la Pokédex. El botón **Volver a la Pokédex** regresa a `/pokedex`.
 - Estilo visual retro: tipografía monoespaciada, sombras duras y efecto CRT con CSS puro.
-- **Navbar de Bootstrap** con marca, enlaces **Inicio** y **Pokédex**, accesos de sesión y menú hamburguesa en móvil. El estado del menú se controla con React, sin el JavaScript de Bootstrap.
+- **Navbar de Bootstrap** con enlaces **Inicio** y **Pokédex**, accesos de sesión siempre visibles y menú hamburguesa en móvil. El estado del menú se controla con React, sin el JavaScript de Bootstrap.
 - **Login y registro** en `/login` y `/registro`, enlazados desde la navbar y conectados a la API REST del backend. Las contraseñas se guardan como hash BCrypt y el login devuelve un **token JWT** con el rol del usuario. La Pokédex se ve exactamente igual con sesión o sin ella.
-- **Favoritos por usuario**: cada tarjeta de la Pokédex tiene una estrella para agregar o quitar el Pokémon. Los favoritos aparecen en el home, se pueden quitar desde ahí y admiten un apodo opcional.
+- **Favoritos por usuario**: cada tarjeta de la Pokédex tiene una estrella para agregar o quitar el Pokémon. Cada usuario puede guardar un **máximo de 6 favoritos**, que se muestran en el home en 6 ranuras fijas (con espacios libres cuando faltan), con contador y apodo opcional.
 - **Vista de administración** en `/admin/favoritos`: un usuario con rol `ADMIN` ve los favoritos de todos los usuarios y puede eliminarlos. El registro público siempre crea usuarios `USER`; el administrador inicial se define con variables de entorno.
 - **Formularios controlados con `useState`** y validación propia: nombre y correo obligatorios, correo con formato, contraseña de 8 a 72 caracteres y mensajes con `alert()`.
 - **Sesión persistida en `localStorage`** como `{ token, usuario }`, compartida por toda la app mediante contextos de React. El token se valida contra `/api/auth/me` al recargar. La contraseña nunca se guarda en el navegador.
@@ -195,13 +195,13 @@ El backend es un monolito Spring Boot con capas `controller`, `service`, `reposi
 | `DELETE` | `/api/favorites/{id}`   | Dueño o `ADMIN`       | `204` sin cuerpo                                                |
 | `GET`    | `/api/favorites/all`    | Solo `ADMIN`          | Favoritos de todos los usuarios, con datos del dueño            |
 
-Los errores usan un JSON uniforme con `status`, `message` y, en validaciones, un mapa `errors` por campo. Los códigos principales son `400` para datos inválidos, `401` para token ausente o credenciales incorrectas, `403` para permisos insuficientes, `404` para favoritos inexistentes o de otro usuario y `409` para correo o favorito duplicado. Swagger documenta todos los endpoints y permite probarlos desde el navegador.
+Los errores usan un JSON uniforme con `status`, `message` y, en validaciones, un mapa `errors` por campo. Los códigos principales son `400` para datos inválidos, `401` para token ausente o credenciales incorrectas, `403` para permisos insuficientes, `404` para favoritos inexistentes o de otro usuario y `409` para correo duplicado, favorito duplicado o límite de 6 favoritos alcanzado. Swagger documenta todos los endpoints y permite probarlos desde el navegador.
 
 El esquema lo administra Flyway y Hibernate solo valida (`ddl-auto=validate`). CORS permite los orígenes de Vite en desarrollo (`5173`) y de la build servida (`4173`), además de los encabezados `Authorization` y `Content-Type`.
 
 ## Favoritos y roles
 
-Cada tarjeta de la Pokédex tiene una estrella que agrega o quita el Pokémon de los favoritos del usuario autenticado. El home muestra la colección con el mismo estilo de tarjeta, permite quitarlos y guardar un apodo. La tabla `favorites` relaciona `user_id` con `pokemon_id` y tiene una restricción única para que un usuario no repita el mismo Pokémon.
+Cada tarjeta de la Pokédex tiene una estrella que agrega o quita el Pokémon de los favoritos del usuario autenticado. Cada usuario puede tener un **máximo de 6 favoritos**: al intentar agregar el séptimo, el backend responde `409` con `Solo puedes tener hasta 6 Pokémon favoritos` y el frontend bloquea la acción antes de llamar a la API. El home muestra siempre 6 ranuras —las ocupadas con su tarjeta y las libres como placeholders— junto a un contador `X de 6`, permite quitar favoritos y guardar un apodo. La tabla `favorites` relaciona `user_id` con `pokemon_id` y tiene una restricción única para que un usuario no repita el mismo Pokémon.
 
 Un usuario `ADMIN` puede consultar la lista global y borrar cualquier favorito desde `/admin/favoritos`; un `USER` solo puede ver y modificar los suyos, y recibe `404` si intenta acceder al de otra persona. El administrador inicial se crea al arrancar con `APP_ADMIN_EMAIL` y `APP_ADMIN_PASSWORD`, únicamente si todavía no existe ningún `ADMIN`. Para promover otra cuenta manualmente:
 

@@ -1,5 +1,9 @@
 import { createContext, useContext } from 'react'
 
+export const MAX_FAVORITOS = 6
+export const MENSAJE_LIMITE_FAVORITOS =
+  `Solo puedes tener hasta ${MAX_FAVORITOS} Pokémon favoritos`
+
 export interface Favorito {
   id: number
   pokemonId: number

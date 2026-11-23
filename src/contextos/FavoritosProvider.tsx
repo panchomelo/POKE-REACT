@@ -9,7 +9,11 @@ import {
   mensajeDeError,
 } from '../servicios/api'
 import { useAuth } from './authContexto'
-import { FavoritosContexto } from './favoritosContexto'
+import {
+  FavoritosContexto,
+  MAX_FAVORITOS,
+  MENSAJE_LIMITE_FAVORITOS,
+} from './favoritosContexto'
 import type { Favorito } from './favoritosContexto'
 
 interface Props {
@@ -103,6 +107,12 @@ const FavoritosProvider = ({ children }: Props) => {
       const existente = favoritos.find(
         (favorito) => favorito.pokemonId === pokemonId,
       )
+
+      if (!existente && favoritos.length >= MAX_FAVORITOS) {
+        const problema = new ErrorApi(409, MENSAJE_LIMITE_FAVORITOS)
+        setError(problema.message)
+        throw problema
+      }
 
       try {
         if (existente) {

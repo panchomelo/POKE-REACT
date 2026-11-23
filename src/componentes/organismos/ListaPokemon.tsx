@@ -1,17 +1,22 @@
 import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../contextos/authContexto'
-import { useFavoritos } from '../../contextos/favoritosContexto'
+import {
+  MAX_FAVORITOS,
+  useFavoritos,
+} from '../../contextos/favoritosContexto'
 import { pokemones } from '../../datos/pokemon'
 import { ErrorApi } from '../../servicios/api'
 import TarjetaPokemon from '../moleculas/TarjetaPokemon'
 
 const ListaPokemon = () => {
   const { usuario } = useAuth()
-  const { esFavorito, alternarFavorito, error } = useFavoritos()
+  const { favoritos, esFavorito, alternarFavorito, error } = useFavoritos()
   const navigate = useNavigate()
   const location = useLocation()
   const [guardando, setGuardando] = useState<number | null>(null)
+
+  const limiteAlcanzado = Boolean(usuario) && favoritos.length >= MAX_FAVORITOS
 
   const manejarFavorito = async (numero: number) => {
     if (!usuario) {
@@ -38,6 +43,19 @@ const ListaPokemon = () => {
 
   return (
     <>
+      {usuario && (
+        <p className="text-white fw-bold text-end mb-3">
+          Favoritos: {favoritos.length} de {MAX_FAVORITOS}
+        </p>
+      )}
+
+      {limiteAlcanzado && (
+        <p className="alert alert-warning" role="status">
+          Ya tienes tus {MAX_FAVORITOS} favoritos. Quita uno desde el inicio
+          para agregar otro Pokémon.
+        </p>
+      )}
+
       {error && (
         <p className="alert alert-danger" role="alert">
           {error}
