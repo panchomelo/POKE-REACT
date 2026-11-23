@@ -1,0 +1,141 @@
+.encabezado {
+    background: #d92727;
+    border-bottom: 8px solid #111;
+    color: white;
+
+    box-shadow:
+        inset 0 -4px 0 #8e0000,
+        inset 0 4px 0 #f54a4a,
+        0 6px 0 #000;
+
+    overflow: height;
+}
+
+.encabezado::before,
+.encabezado::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: rgba(0, 0, 0, 0.15);
+}
+
+.encabezado::before {
+    top: 12px;
+}
+
+.encabezado::after {
+    bottom: 12px;
+}
+
+.titulo {
+    font-size: clamp(2rem, 6vw, 4.5rem);
+    font-weight: 900;
+    letter-spacing: clamp(4px, 1.2vw, 8px);
+
+    color: #fff;
+
+    text-shadow:
+        5px 5px 0 #111;
+}
+
+.subtitulo {
+    margin-top: 15px;
+
+    font-size: clamp(0.65rem, 1.6vw, 0.85rem);
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    color: white;
+
+    text-shadow: 2px 2px 0 #8e0000;
+}
+
+/* ==========================================
+   BARRA DE NAVEGACIÓN
+========================================== */
+
+.barra {
+    background: #111;
+
+    border: 2px solid #111;
+    border-radius: 0;
+
+    margin-bottom: 18px;
+    padding: 10px 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+/* Enlaces de navegación */
+.barra .enlace {
+    border: 2px solid transparent;
+    color: #eee;
+
+    font-size: 0.72rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+
+    padding: 6px 10px;
+
+    text-transform: uppercase;
+    /* height inherit del contenido, pero con menos padding vertical */
+    min-height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 4px;
+}
+
+/* Estado activo */
+.barra .enlace.activo,
+.barra .enlace.activo:hover {
+    background: #d92727;
+
+    border-color: #d92727;
+    color: #fff;
+}
+
+/* Hover */
+.barra .enlace:hover,
+.barra .enlace:focus-visible {
+    border-color: #fff;
+    color: #fff;
+}
+
+/* Toggler para móviles */
+.toggler {
+    background: transparent;
+
+    border: 2px solid #eee;
+    border-radius: 0;
+
+    padding: 5px 7px;
+}
+
+.toggler:focus-visible {
+    box-shadow: none;
+
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+.iconoMenu {
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+.iconoMenu span {
+    display: block;
+
+    background: #eee;
+
+    height: 3px;
+    width: 22px;
+}

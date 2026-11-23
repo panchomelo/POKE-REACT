@@ -67,21 +67,6 @@
     padding: 6px 10px;
 }
 
-.barra .marca {
-    color: #fff;
-
-    font-size: 0.78rem;
-    font-weight: bold;
-    letter-spacing: 2px;
-
-    text-transform: uppercase;
-}
-
-.barra .marca:hover,
-.barra .marca:focus-visible {
-    color: #f54a4a;
-}
-
 .barra .enlace {
     border: 2px solid transparent;
     color: #eee;

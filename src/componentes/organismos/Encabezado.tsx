@@ -30,18 +30,9 @@ const Encabezado = ({ usuario, onCerrarSesion }: Props) => {
         aria-label="Navegación principal"
       >
         <div className="container-fluid p-0">
-          <NavLink
-            to="/"
-            end
-            className={`navbar-brand ${estilos.marca}`}
-            onClick={cerrarMenu}
-          >
-            Pokédex Kanto
-          </NavLink>
-
           <button
             type="button"
-            className={`navbar-toggler ${estilos.toggler}`}
+            className={`navbar-toggler ms-auto ${estilos.toggler}`}
             aria-controls="menuPrincipal"
             aria-expanded={menuAbierto}
             aria-label={menuAbierto ? 'Cerrar menú' : 'Abrir menú'}
@@ -79,7 +70,7 @@ const Encabezado = ({ usuario, onCerrarSesion }: Props) => {
                 </NavLink>
               </li>
 
-              {!usuario && pathname !== '/login' && (
+              {!usuario && (
                 <li className="nav-item">
                   <NavLink
                     to="/login"
@@ -91,7 +82,7 @@ const Encabezado = ({ usuario, onCerrarSesion }: Props) => {
                 </li>
               )}
 
-              {!usuario && pathname !== '/registro' && (
+              {!usuario && (
                 <li className="nav-item">
                   <NavLink
                     to="/registro"
