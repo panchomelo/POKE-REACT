@@ -115,23 +115,11 @@ export const listarTodosFavoritos = (token: string): Promise<FavoritoAdmin[]> =>
 export const agregarFavorito = (
   token: string,
   pokemonId: number,
-  alias?: string,
 ): Promise<Favorito> =>
   solicitar<Favorito>('/api/favorites', {
     metodo: 'POST',
     token,
-    cuerpo: { pokemonId, alias },
-  })
-
-export const actualizarFavorito = (
-  token: string,
-  id: number,
-  alias: string,
-): Promise<Favorito> =>
-  solicitar<Favorito>(`/api/favorites/${id}`, {
-    metodo: 'PUT',
-    token,
-    cuerpo: { alias },
+    cuerpo: { pokemonId },
   })
 
 export const eliminarFavorito = (token: string, id: number): Promise<void> =>

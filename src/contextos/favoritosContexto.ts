@@ -7,7 +7,6 @@ export const MENSAJE_LIMITE_FAVORITOS =
 export interface Favorito {
   id: number
   pokemonId: number
-  alias: string | null
   createdAt: string
 }
 
@@ -25,7 +24,6 @@ export interface FavoritosContextoValor {
   error: string
   esFavorito: (pokemonId: number) => boolean
   alternarFavorito: (pokemonId: number) => Promise<void>
-  actualizarAlias: (id: number, alias: string) => Promise<void>
   recargar: () => Promise<void>
 }
 

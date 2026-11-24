@@ -122,7 +122,6 @@ const AdminFavoritos = () => {
               <tr>
                 <th scope="col">Usuario</th>
                 <th scope="col">Pokémon</th>
-                <th scope="col">Apodo</th>
                 <th scope="col">Fecha</th>
                 <th scope="col" className="text-end">
                   Acción
@@ -164,8 +163,6 @@ const AdminFavoritos = () => {
                         </span>
                       </div>
                     </td>
-
-                    <td>{favorito.alias ?? '—'}</td>
                     <td>{formatearFecha(favorito.createdAt)}</td>
 
                     <td className="text-end">

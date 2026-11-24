@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import type { FormEvent } from 'react'
 import { useAuth } from '../../contextos/authContexto'
 import {
   MAX_FAVORITOS,
@@ -18,12 +17,8 @@ const SeccionFavoritos = () => {
     cargando,
     error,
     alternarFavorito,
-    actualizarAlias,
   } = useFavoritos()
   const [guardandoId, setGuardandoId] = useState<number | null>(null)
-  const [editandoId, setEditandoId] = useState<number | null>(null)
-  const [alias, setAlias] = useState('')
-  const [guardandoAlias, setGuardandoAlias] = useState(false)
 
   const quitarFavorito = async (favorito: Favorito) => {
     setGuardandoId(favorito.pokemonId)
@@ -34,33 +29,6 @@ const SeccionFavoritos = () => {
       // El contexto de favoritos ya muestra el mensaje de error.
     } finally {
       setGuardandoId(null)
-    }
-  }
-
-  const iniciarEdicion = (favorito: Favorito) => {
-    setEditandoId(favorito.id)
-    setAlias(favorito.alias ?? '')
-  }
-
-  const cancelarEdicion = () => {
-    setEditandoId(null)
-    setAlias('')
-  }
-
-  const guardarAlias = async (
-    evento: FormEvent<HTMLFormElement>,
-    id: number,
-  ) => {
-    evento.preventDefault()
-    setGuardandoAlias(true)
-
-    try {
-      await actualizarAlias(id, alias)
-      cancelarEdicion()
-    } catch {
-      // El contexto de favoritos ya muestra el mensaje de error.
-    } finally {
-      setGuardandoAlias(false)
     }
   }
 
@@ -163,57 +131,6 @@ const SeccionFavoritos = () => {
                       }}
                       guardandoFavorito={guardandoId === favorito.pokemonId}
                     />
-
-                    <div className={estilos.aliasPanel}>
-                      {editandoId === favorito.id ? (
-                        <form
-                          className="d-flex align-items-center gap-1"
-                          onSubmit={(evento) => {
-                            void guardarAlias(evento, favorito.id)
-                          }}
-                        >
-                          <input
-                            className={`form-control ${estilos.inputAlias}`}
-                            type="text"
-                            value={alias}
-                            maxLength={100}
-                            placeholder="Apodo"
-                            aria-label={`Apodo para ${pokemon.nombre}`}
-                            onChange={(evento) => setAlias(evento.target.value)}
-                            autoFocus
-                          />
-
-                          <Boton
-                            variante="sesion"
-                            type="submit"
-                            disabled={guardandoAlias}
-                          >
-                            OK
-                          </Boton>
-
-                          <Boton
-                            variante="sesion"
-                            onClick={cancelarEdicion}
-                            disabled={guardandoAlias}
-                          >
-                            X
-                          </Boton>
-                        </form>
-                      ) : (
-                        <>
-                          <span className={estilos.alias}>
-                            {favorito.alias ?? 'Sin apodo'}
-                          </span>
-
-                          <Boton
-                            variante="sesion"
-                            onClick={() => iniciarEdicion(favorito)}
-                          >
-                            Apodo
-                          </Boton>
-                        </>
-                      )}
-                    </div>
                   </div>
                 </div>
               )

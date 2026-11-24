@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import type { ReactNode } from 'react'
 import {
-  actualizarFavorito,
   agregarFavorito,
   eliminarFavorito,
   ErrorApi,
@@ -140,28 +139,6 @@ const FavoritosProvider = ({ children }: Props) => {
     [favoritos, manejarError, recargar, token],
   )
 
-  const actualizarAlias = useCallback(
-    async (id: number, alias: string) => {
-      if (!token) {
-        throw new ErrorApi(401, 'Debe iniciar sesión para editar favoritos')
-      }
-
-      try {
-        const actualizado = await actualizarFavorito(token, id, alias)
-        setFavoritos((actuales) =>
-          actuales.map((favorito) =>
-            favorito.id === id ? actualizado : favorito,
-          ),
-        )
-        setError('')
-      } catch (problema) {
-        manejarError(problema)
-        throw problema
-      }
-    },
-    [manejarError, token],
-  )
-
   const visibles = token && tokenCargado === token ? favoritos : []
 
   const esFavorito = (pokemonId: number) =>
@@ -175,7 +152,6 @@ const FavoritosProvider = ({ children }: Props) => {
         error: token ? error : '',
         esFavorito,
         alternarFavorito,
-        actualizarAlias,
         recargar,
       }}
     >
